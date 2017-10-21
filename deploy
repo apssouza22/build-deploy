@@ -1,0 +1,20 @@
+#!/bin/bash
+set -ex
+
+# $1 docker image
+# $2 image version
+# $3 project name
+
+
+
+loginString="$(aws ecr get-login)"
+${loginString/-e none/ }
+
+docker tag $1:latest AWS_REPOSITORY/$1:v$2
+docker push AWS_REPOSITORY/$1:v$2
+
+cp aws-compose.yml /var/sites/$3/tmp-aws-compose.yml
+sed -i -e 's/XXX/'$2'/g' /var/sites/$3/tmp-aws-compose.yml
+ecs-cli compose --verbose --file /var/sites/$3/tmp-aws-compose.yml \
+--project-name $3 service up --container-name $3 \
+--role AWS_ROLE
