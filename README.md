@@ -4,7 +4,13 @@ This is a Docker image containing everything you need to build Java projects and
 
 ## How to use
 
-* Add your AWS credentials in the present files
+* Add your AWS credentials in the environment variables
+```
+ENV ECS_CLUSTER cluster-test
+ENV ACCESS_KEY my_access_key
+ENV SECRET_KEY my_secret_key
+ENV REGIAN eu-west-1
+```
 
 * build the image `docker build -t build-deploy:latest -f Dockerfile .`
 

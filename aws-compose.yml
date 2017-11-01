@@ -1,9 +1,0 @@
-version: '2'
-
-services:
-  PROJECT_NAME:
-    image: AWS_REPOSITORY/DOCKER_IMAGE:VERSION
-    cpu_shares: 100
-    mem_limit: 525288000
-    ports:
-      - 80

@@ -2,6 +2,11 @@ FROM jenkins/jenkins:lts
 USER root
 ENV REFRESHED_AT 2016-10-17
 
+ENV ECS_CLUSTER cluster-test
+ENV ACCESS_KEY AKIAJKMLHIO36OSGG6MA
+ENV SECRET_KEY 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
+ENV REGIAN eu-west-1
+
 
 # Install curl, wget
 RUN apt-get update -qq \
@@ -18,9 +23,10 @@ RUN apt-get install python && \
 RUN curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest && \
     chmod +x /usr/local/bin/ecs-cli
 
-ADD ./config_aws  /root/.aws/config
-ADD ./config_ecs  /root/.ecs/config
-ADD ./credentials  /root/.aws/credentials
+#AWS config
+ADD ./aws/config_aws  /root/.aws/config
+ADD ./aws/config_ecs  /root/.ecs/config
+ADD ./aws/credentials  /root/.aws/credentials
 
 #Install docker 
 RUN apt-get update && \
@@ -39,3 +45,8 @@ apt-get -y install docker-ce
 
 #Install maven
 RUN apt-get -y install maven
+
+ADD ./start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+ENTRYPOINT [ "/usr/local/bin/start.sh" ]
+

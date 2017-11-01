@@ -1,0 +1,10 @@
+[ecs]
+cluster                     = @ECS_CLUSTER@
+aws_profile                 = vnhosting
+region                      = @REGIAN@
+aws_access_key_id           = @ACCESS_KEY@
+aws_secret_access_key       = @SECRET_KEY@
+compose-project-name-prefix = ecscompose-
+compose-service-name-prefix = ecscompose-service-
+cfn-stack-name-prefix       = amazon-ecs-cli-setup-
+
