@@ -2,11 +2,6 @@ FROM jenkins/jenkins:lts
 USER root
 ENV REFRESHED_AT 2016-10-17
 
-ENV ECS_CLUSTER cluster-test
-ENV ACCESS_KEY my_access_key
-ENV SECRET_KEY my_secret_key
-ENV REGIAN eu-west-1
-
 
 # Install curl, wget
 RUN apt-get update -qq \
