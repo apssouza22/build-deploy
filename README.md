@@ -11,7 +11,7 @@ docker run -e "ECS_CLUSTER=cluster-test" -e "ACCESS_KEY=my_access_key" -e "SECRE
 
 * build the image `docker build -t build-deploy:latest -f Dockerfile .`
 
-* run the container `docker run -it -p 8080:8080 -p 5000:5000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock build-deploy:latest`
+* run the container `docker run -it docker run -e "ECS_CLUSTER=cluster-test" -e "ACCESS_KEY=my_access_key" -e "SECRET_KEY=my_secret_key" -e "AWS_REPOSITORY=repository_url" -e "REGIAN=eu-west-1"  -p 8080:8080 -p 5000:5000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock build-deploy:latest`
 
 * Test your commands inside the container `docker exec -it CONTAINER_ID bash` 
 
